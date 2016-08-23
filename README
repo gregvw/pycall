@@ -1,0 +1,14 @@
+This is a simple example of passing values from C++ to Python and back using the Python/C-API
+
+In this directory you can run 
+
+cmake .
+make
+
+to build the PyCall executable. Run the executable with the command line argument
+
+./PyCall add x y
+./PyCall times x y
+
+where x and y are two numbers and the functions defined in numerics.py will be called
+to evaluate the result and return it. 
