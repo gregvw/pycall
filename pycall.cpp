@@ -18,24 +18,23 @@ int main( int argc, char *argv[]) {
   double a = atof(argv[2]);
   double b = atof(argv[3]);
 
-  // Start Python interpreter
   Py_Initialize();
 
   // Look for our module in the current path
   sys  = PyImport_ImportModule("sys");
   path = PyObject_GetAttrString(sys,"path");
-  PyList_Append(path, PyString_FromString("."));
+  PyList_Append(path, PyUnicode_FromString("."));
 
   // Get the name of the Python module we want to import 
   // Note that we need to call the method c_str() on our basic string to convert
   // to char* 
-  pModuleName = PyString_FromString((char*)numerics.c_str());
+  pModuleName = PyUnicode_FromString((char*)numerics.c_str());
 
   // Import the module
   pModule = PyImport_Import(pModuleName);
 
   // Get the Python function we want to use
-  pFuncName = PyString_FromString(fname.c_str());
+  pFuncName = PyUnicode_FromString((char*)fname.c_str());
 
   // Check if the module has the method that we want 
   if( PyObject_HasAttr( pModule, pFuncName ) ) {
@@ -69,7 +68,8 @@ int main( int argc, char *argv[]) {
 
   }
 
-  // Quit Python Interpreter
+
+
   Py_Finalize();
 
   return 0;

@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.0)
 project(PyCall)
 
-# I needed to specify the 2.7 as otherwise CMake would use 3.5
-# which seems to not support PyString_FromString
-find_package( PythonLibs 2.7 REQUIRED )
+set(Python_ADDITIONAL_VERSIONS 3.4 3.5)
+
+
+find_package( PythonLibs 3 REQUIRED )
 add_executable(PyCall pycall.cpp)
 
 include_directories(${PYTHON_INCLUDE_DIR})
